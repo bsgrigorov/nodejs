@@ -7,11 +7,9 @@
       "cpu": 0,
       "portMappings": [
         {
-          "name": "nodejsapp-3000-tcp",
           "containerPort": 3000,
           "hostPort": 3000,
-          "protocol": "tcp",
-          "appProtocol": "http"
+          "protocol": "tcp"
         }
       ],
       "essential": true,
@@ -37,10 +35,6 @@
   ],
   "cpu": "512",
   "memory": "1024",
-  "runtimePlatform": {
-    "cpuArchitecture": "X86_64",
-    "operatingSystemFamily": "LINUX"
-  },
   "tags": [
     {
       "key": "ecs:taskDefinition:createdFrom",
