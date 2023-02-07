@@ -2,12 +2,12 @@
   "family": "NodeJS",
   "containerDefinitions": [
     {
-      "name": "nodejs",
+      "name": "nodejsapp",
       "image": "621387090376.dkr.ecr.us-east-1.amazonaws.com/ecr_repo",
       "cpu": 0,
       "portMappings": [
         {
-          "name": "nodejs-3000-tcp",
+          "name": "nodejsapp-3000-tcp",
           "containerPort": 3000,
           "hostPort": 3000,
           "protocol": "tcp",
