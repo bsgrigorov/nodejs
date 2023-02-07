@@ -29,6 +29,56 @@ Resources:
             Condition:
               StringLike:
                 token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser
+      Policies:
+      - PolicyName: AWSECSTaskRegister
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action:
+            - ecs:RunTask
+            - ecs:ListAttributes
+            - ecs:ListTasks
+            - ecs:StartTask
+            - ecs:StopTask
+            - ecs:ListContainerInstances
+            - ecs:DescribeTasks
+            - ecs:DescribeServices
+            Resource:
+            - arn:aws:ecs:*:621387090376:service/*
+            - arn:aws:ecs:*:621387090376:cluster/*
+            - arn:aws:ecs:*:621387090376:task-definition/NodeJS:*
+            - arn:aws:ecs:*:621387090376:task/*/*
+            - arn:aws:ecs:*:621387090376:container-instance/*/*
+      - PolicyName: ECSClustersEdit
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action:
+            - ecs:ListServices
+            - ecs:ListServicesByNamespace
+            - ecs:ListTaskDefinitionFamilies
+            - ecs:RegisterTaskDefinition
+            - ecs:ListTaskDefinitions
+            - ecs:ListClusters
+            Resource: "*"
+      - PolicyName: Passrole
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action:
+            - iam:GetRole
+            - iam:PassRole
+            - ecs:ListTaskDefinitionFamilies
+            - ecs:RegisterTaskDefinition
+            - ecs:ListTaskDefinitions
+            - ecs:ListClusters
+            Resource:
+            - arn:aws:iam::621387090376:role/*
 
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
